@@ -6,7 +6,7 @@ GUI
 * Set Ingest node quantity to ‘1’
 * Do not enable X-Pack on deployment.
 
-# Basic Elastic test
+### Basic Elastic test
 
 Verify (or attach) cluster context
 * dcos cluster list
