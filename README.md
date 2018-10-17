@@ -1,5 +1,6 @@
 ### Deploy Elastic framework (contains Elasticsearch)
 CLI
+
 `dcos package install elastic --yes`
 
 GUI
@@ -9,10 +10,13 @@ GUI
 ### Basic Elastic test
 
 Verify (or attach) cluster context
+
 `dcos cluster list`
+
 `dcos cluster attach <dcos cluster name>`
 
 SSH into the DC/OS Master leader
+
 `dcos node ssh --master-proxy --leader`
   
 Identify an endpoint URL:port from the DC/OS UI
@@ -20,7 +24,9 @@ Identify an endpoint URL:port from the DC/OS UI
 * e.g. coordinator.elastic.l4lb.thisdcos.directory:9200
   
 GET a response from the endpoint
+
 `curl -X GET 'http:///coordinator.elastic.l4lb.thisdcos.directory:9200'`
+
 * Expected response:
 {
  "name" : "coordinator-0-node",
@@ -37,11 +43,13 @@ GET a response from the endpoint
 }
 
 POST a Hello World message to the above endpoint
+
 `curl -XPOST 'http://coordinator.elastic.l4lb.thisdcos.directory:9200/helloworld/1' -d '{ "message": "Hello World!" }'`
+
 * Expected response:
 {"_index":"helloworld","_type":"1","_id":"AWZp1soFCShwhBJOBDeJ","_version":1,"result":"created","_shards":{"total":2,"successful":2,"failed":0},"created":true}
 
 GET the above message from the endpoint
-* curl -X GET 'http://coordinator.elastic.l4lb.thisdcos.directory:9200/helloworld'
+`curl -X GET 'http://coordinator.elastic.l4lb.thisdcos.directory:9200/helloworld'`
 * Expected response:
 "helloworld":{"aliases":{},"mappings":{"1":{"properties":{"message":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}}}}},"settings":{"index":{"creation_date":"1539373975433","number_of_shards":"5","number_of_replicas":"1","uuid":"3merMqPkTHeW5oUGxB3eqg","version":{"created":"5060999"},"provided_name":"helloworld"}}}}
